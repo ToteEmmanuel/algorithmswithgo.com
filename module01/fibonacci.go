@@ -24,6 +24,25 @@ package module01
 //   Fibonacci(7) => 13
 //   Fibonacci(14) => 377
 //
+func FibonacciLame(n int) int {
+	if n <= 1 {
+		return n
+	}
+	return Fibonacci(n-1) + Fibonacci(n-2)
+}
+
 func Fibonacci(n int) int {
-	return 0
+	result, _ := FibonacciCooler(n)
+	return result
+}
+
+func FibonacciCooler(n int) (int, int) {
+	if n == 0 {
+		return 0, 0
+	}
+	if n == 1 {
+		return 1, 0
+	}
+	prev1, prev2 := FibonacciCooler(n - 1)
+	return prev1 + prev2, prev1
 }

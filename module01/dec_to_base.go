@@ -10,5 +10,14 @@ package module01
 //   DecToBase(14, 2) => "1110"
 //
 func DecToBase(dec, base int) string {
-	return ""
+	const charset = "0123456789ABCDEF"
+	if base > 16 || base < 2 {
+		panic("Invalid base")
+	}
+	lastDigit := string(charset[dec%base])
+	dec /= base
+	if dec != 0 {
+		return DecToBase(dec, base) + lastDigit
+	}
+	return lastDigit
 }
